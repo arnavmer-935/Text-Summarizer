@@ -10,8 +10,7 @@ from langchain.chains.summarize import load_summarize_chain
 import os
 
 
-#load_dotenv()
-GOOGLE_API_KEY = "AIzaSyD7zLHhcIw0C9LFDG8QdRT4ml6TRYQKavE"
+load_dotenv()
 genai.configure(api_key = GOOGLE_API_KEY)
 llm_model = ChatGoogleGenerativeAI(model = "gemini-pro",temperature=0.4)
 
