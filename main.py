@@ -35,14 +35,86 @@ def divide_text_chunks(text):
                                         template = chunks_prompt)
 
     final_combine_prompt = '''
-    Provide a final summary of the entire text with these important points.
-    Add a Generic Motivational Title,
-    Start the precise summary with an introduction and provide the
-    summary in few paragraphs for the text, based on the length of the given text.
-    Include important observations, results, conclusions and facts as well.
-    Include any important equations or mathematical formulas you find in the text.
-    Ignore all in-text questions.
-    Also highlight character sketches.
+    Summarize the input text with the following goals:
+    Retain key points, main ideas, and essential information.
+    Eliminate redundancy, filler words, and minor details.
+    Maintain clarity and logical flow.
+    Format: Bullet pointers with clearly segregated sub-headings for each major topic within the text or document.
+    Tone: Neutral, concise, and professional.
+    Detail: Include the following, if applicable to the subject of the user's input:
+        English & Grammar	- Rules and examples
+                            - Key concepts (e.g., sentence structure)
+                            - Common mistakes and how to avoid them
+                            
+        Literature	- Themes and messages
+                    - Plot summary
+                    - Key characters and roles
+                    - Literary devices (e.g., metaphors)
+                    - Historical context
+                    
+        Science	- Key concepts and theories
+                - Diagrams (e.g., labeled charts)
+                - Equations and formulas
+                - Applications
+                - Experiments
+                
+        Economics	- Definitions and key terms
+                    - Graphs and charts (e.g., demand-supply curve)
+                    - Data and figures
+                    - Economic theories
+                    - Examples
+                    
+        Engineering	- Principles and frameworks
+                    - Diagrams (e.g., circuit designs)
+                    - Equations
+                    - Applications
+                    - Innovations and advancements
+                    
+        History	- Timelines
+                - Key events and turning points
+                - Influential people
+                - Causes and effects
+                - Facts and dates
+                
+        Social Science	- Key theories (e.g., sociology concepts)
+                        - Case studies
+                        - Figures and trends
+                        - Important terminology
+                        
+        Mathematics	- Equations and formulas
+                    - Step-by-step methods
+                    - Key concepts 
+                    - Diagrams and graphs
+                    - Applications
+                    
+        Programming	- Code snippets
+                    - Algorithms and workflows
+                    - Key concepts (e.g., OOP, data structures)
+                    - Use cases
+                    
+        Data Science - Definitions and techniques (e.g., regression, clustering)
+                     - Equations
+                     - Examples (real-world datasets)
+                     - Visual aids
+                     
+        Current Affairs	- Event summary (what, when, where, why)
+                        - Key players involved
+                        - Impact (short- and long-term)
+                        - Facts and figures
+                        - Analysis
+                        
+        Law	- Legal terms and definitions
+            - Landmark cases and judgments
+            - Key principles and sections of law
+            - Structure (articles, clauses)
+            - Real-life applications
+            
+        Logical Reasoning	- Concepts (e.g., deductive reasoning)
+                            - Examples of reasoning problems
+                            - Steps to solve
+                            - Visual aids (flowcharts, diagrams)
+                            
+    Adaptability: Adjust the summary length and detail based on the input text's complexity and purpose (e.g., article, research paper, or business report).
     Speech: `{text}`
     '''
     final_combine_prompt_template = PromptTemplate(input_variables = ['text'],
@@ -80,4 +152,5 @@ def text_summary(text, language="english"):
     summary = llm_chain.invoke({'text':text,'language':language})
     return summary["text"]
   
+
 
